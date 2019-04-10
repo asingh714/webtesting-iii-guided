@@ -1,14 +1,12 @@
 import React from 'react';
-import banana from 'react-test-renderer'; // 1: install this npm module as a dev dependency
+import renderer from 'react-test-renderer'; 
 
 import App from './App';
 
 describe('<App />', () => {
-  // 2. write this test
-  it('matches snapshot', () => {
-    const tree = banana.create(<App />); // generates a DOM tree
-
-    // snapshots are a JSON representation of the DOM tree
-    expect(tree.toJSON()).toMatchSnapshot();
-  });
+  it("matches snapshot", () => {
+    const tree = renderer.create(<App />).toJSON();
+    // this is all done with jest. not react-test-renderer
+    expect(tree).toMatchSnapshot();
+  })
 });
